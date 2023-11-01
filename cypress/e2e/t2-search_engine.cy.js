@@ -23,4 +23,10 @@ describe("Search engine functionality", () => {
       cy.wrap($result).should("include.text", "test");
     });
   });
+
+  it("Clearing entered data", () => {
+    cy.get("#query").type("test", { delay: 300 });
+    cy.get("#query").clear();
+    cy.get("#query").should("have.value", "");
+  });
 });
