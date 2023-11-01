@@ -38,4 +38,14 @@ describe("Search engine functionality", () => {
       "Wpisz jedną frazę lub kilkaPrzegladaj listę wynikówZawęź listę wyników korzystając z filtrów"
     );
   });
+
+  it("Searching for no results", () => {
+    cy.get("#query").type("testtesttest", { delay: 300 });
+    cy.get('button[type="submit"]').click();
+    cy.get(".search-results__empty").should("exist").and("be.visible");
+    cy.get(".search-results__empty p").should(
+      "include.text",
+      "Nie znaleziono wyników"
+    );
+  });
 });
