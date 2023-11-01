@@ -7,7 +7,7 @@ describe("Search engine functionality", () => {
 
   it("Searching entered data (by ENTER) and verifying results", () => {
     cy.get("#query").type("test{enter}", { delay: 300 });
-    cy.get(".result-list ul").should("exist");
+    cy.get(".result-list ul").should("exist").and("be.visible");
     cy.get(".result-list ul").should("have.length.gte", 1);
     cy.get(".result-list ul li").each(($result) => {
       cy.wrap($result).should("include.text", "test");
@@ -17,7 +17,7 @@ describe("Search engine functionality", () => {
   it("Searching entered data (by search button) and verifying results", () => {
     cy.get("#query").type("test", { delay: 300 });
     cy.get('button[type="submit"]').click();
-    cy.get(".result-list ul").should("exist");
+    cy.get(".result-list ul").should("exist").and("be.visible");
     cy.get(".result-list ul").should("have.length.gte", 1);
     cy.get(".result-list ul li").each(($result) => {
       cy.wrap($result).should("include.text", "test");
@@ -28,5 +28,14 @@ describe("Search engine functionality", () => {
     cy.get("#query").type("test", { delay: 300 });
     cy.get("#query").clear();
     cy.get("#query").should("have.value", "");
+  });
+
+  it("Searching with no data", () => {
+    cy.get('button[type="submit"]').click();
+    cy.get(".search__empty-state").should("exist").and("be.visible");
+    cy.get(".search__empty-state p").should(
+      "include.text",
+      "Wpisz jedną frazę lub kilkaPrzegladaj listę wynikówZawęź listę wyników korzystając z filtrów"
+    );
   });
 });
