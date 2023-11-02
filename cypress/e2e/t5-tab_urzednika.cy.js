@@ -7,6 +7,22 @@ describe("'Dla urzednika' tab", () => {
     cy.get("a#officials-tab").should("have.class", "active");
   });
 
+  it("Checking if 'Dla urzednika' tab contains other tabs", () => {
+    const expectedLabels = [
+      "Sprawy publiczne",
+      "Dokumenty urzędowe",
+      "Postępowania",
+      "Systemy informatyczne",
+      "Dotacje i dofinansowania",
+      "Nieruchomości i środowisko",
+      "Pozostałe sprawy",
+    ];
+
+    expectedLabels.forEach((label) => {
+      cy.contains("span", label).should("exist");
+    });
+  });
+
   it("Redirection to the 'Sprawy publiczne' tab", () => {
     cy.get('a[href="/web/gov/uslugi-dla-urzednika/#sprawy-publiczne"]').click();
     cy.url().should(

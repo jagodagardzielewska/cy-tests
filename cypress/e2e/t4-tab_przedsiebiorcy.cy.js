@@ -7,6 +7,34 @@ describe("'Dla przedsiebiorcy' tab", () => {
     cy.get("a#business-tab").should("have.class", "active");
   });
 
+  it("Checking if 'Dla przedsiebiorcy' tab contains other tabs", () => {
+    const expectedLabels = [
+      "Tarcza Antykryzysowa",
+      "Zakładanie firmy",
+      "Rozwój firmy",
+      "Pracownicy w firmie",
+      "Podatki i księgowość",
+      "Ubezpieczenia społeczne",
+      "Sprawy urzędowe",
+      "Obowiązki przedsiębiorcy",
+      "Zezwolenia, koncesje, rejestry",
+      "Uprawnienia zawodowe",
+      "Zmiany w firmie",
+      "Zawieszenie i wznowienie",
+      "Zamykanie firmy",
+      "Sprzedaż i marketing",
+      "Kontrahenci i klienci",
+      "Handel zagraniczny",
+      "Prowadzenie biznesu w UE",
+      "Inwestycje budowlane",
+      "Cudzoziemcy w Polsce",
+    ];
+
+    expectedLabels.forEach((label) => {
+      cy.contains("span", label).should("exist").and("be.visible");
+    });
+  });
+
   it("Redirection to the 'Tarcza antykryzysowa' tab", () => {
     cy.get(
       'a[href="https://www.gov.pl/web/gov/uslugi-dla-przedsiebiorcy/#tarcza-antykryzysowa"]'
@@ -87,7 +115,7 @@ describe("'Dla przedsiebiorcy' tab", () => {
     );
   });
 
-  it("Redirection to the 'Zwolnienia, koncesje, rejestry' tab", () => {
+  it("Redirection to the 'Zezwolenia, koncesje, rejestry' tab", () => {
     cy.get(
       'a[href="https://www.gov.pl/web/gov/uslugi-dla-przedsiebiorcy/#zezwolenia-koncesje-rejestry"]'
     ).click();

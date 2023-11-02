@@ -7,6 +7,21 @@ describe("'Dla rolnika' tab", () => {
     cy.get("a#farmer-tab").should("have.class", "active");
   });
 
+  it("Checking if 'Dla rolnika' tab contains other tabs", () => {
+    const expectedLabels = [
+      "Wsparcie finansowe, dofinansowania do działalności",
+      "Ubezpieczenia społeczne",
+      "Zaświadczenia, zezwolenia i rejestry",
+      "Uprawa roślin",
+      "Hodowla zwierząt",
+      "Nieruchomości i ziemia rolna",
+    ];
+
+    expectedLabels.forEach((label) => {
+      cy.contains("span", label).should("exist");
+    });
+  });
+
   it("Redirection to the 'Wsparcie finansowe, dofinansowania do dzialalnosci' tab", () => {
     cy.get('a[href="/web/gov/uslugi-dla-rolnika/#wsparcie-finansowe"]').click();
     cy.url().should(

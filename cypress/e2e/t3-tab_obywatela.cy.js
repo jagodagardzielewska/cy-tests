@@ -7,6 +7,30 @@ describe("'Dla obywatela' tab", () => {
     cy.get("a#citizens-tab").should("have.class", "active");
   });
 
+  it("Checking if 'Dla obywatela' tab contains other tabs", () => {
+    const expectedLabels = [
+      "Dokumenty i dane osobowe",
+      "Edukacja",
+      "Kierowcy i pojazdy",
+      "Meldunek i wybory",
+      "Nieruchomości i środowisko",
+      "Podatki",
+      "Pomoc prawna",
+      "Praca i biznes",
+      "Rodzina i małżeństwo",
+      "Wojsko i bezpieczeństwo",
+      "Wyjazdy i wypoczynek",
+      "Zasiłki i pomoc finansowa",
+      "Zaświadczenia i odpisy",
+      "Zdrowie i ubezpieczenia społeczne",
+      "Cudzoziemiec w Polsce",
+    ];
+
+    expectedLabels.forEach((label) => {
+      cy.contains("span", label).should("exist").and("be.visible");
+    });
+  });
+
   it("Redirection to the 'Dokumenty i dane osobowe' tab", () => {
     cy.get(
       'a[href="/web/gov/uslugi-dla-obywatela/#dokumenty-i-dane-osobowe"]'
